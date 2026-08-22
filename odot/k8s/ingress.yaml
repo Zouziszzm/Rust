@@ -1,0 +1,17 @@
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: odot
+#   namespace: odot
+# spec:
+#   rules:
+#     - host: odot.local
+#       http:
+#         paths:
+#           - path: /
+#             pathType: Prefix
+#             backend:
+#               service:
+#                 name: odot
+#                 port:
+#                   number: 80

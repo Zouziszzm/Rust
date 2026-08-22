@@ -1,0 +1,44 @@
+:root {
+  --ink: #1c2a24;
+  --ink-soft: #355246;
+  --muted: #6a7a71;
+  --line: #d5ddd7;
+  --surface: #f7faf7;
+  --page: #eef3ef;
+  --accent: #0f7a5a;
+  --danger: #b42318;
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Manrope", system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  min-height: 100%;
+}
+
+body {
+  color: var(--ink);
+  background:
+    radial-gradient(circle at top left, #dce9e1 0%, transparent 42%),
+    linear-gradient(180deg, var(--page), #e7eee8);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+main {
+  min-height: 100vh;
+  padding: 3.5rem 1.25rem 4rem;
+}

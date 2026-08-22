@@ -1,0 +1,66 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-config
+  namespace: odot
+data:
+  HOST: "0.0.0.0"
+  PORT: "8080"
+  DB_POOL_MAX: "5"
+  CORS_ORIGIN: "http://localhost:3000"
+  RUST_LOG: "info,odot=debug"
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: app-secret
+  namespace: odot
+type: Opaque
+stringData:
+  DATABASE_URL: postgres://odot:odot@postgres:5432/odot
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: odot
+  namespace: odot
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: odot
+  template:
+    metadata:
+      labels:
+        app: odot
+    spec:
+      containers:
+        - name: odot
+          image: odot:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: app-config
+            - secretRef:
+                name: app-secret
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /ready
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 5
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 256Mi

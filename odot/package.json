@@ -1,0 +1,14 @@
+{
+  "name": "odot",
+  "private": true,
+  "scripts": {
+    "stop": "bash scripts/stop-dev.sh",
+    "dev": "bash scripts/dev.sh",
+    "dev:backend": "cd backend && cargo run",
+    "dev:frontend": "npm --prefix frontend run dev",
+    "install:all": "npm --prefix frontend install"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
