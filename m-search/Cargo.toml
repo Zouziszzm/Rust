@@ -1,0 +1,26 @@
+[package]
+name = "m-search"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "m_search"
+path = "src/lib.rs"
+
+[[bin]]
+name = "m-search"
+path = "src/main.rs"
+
+[dependencies]
+anyhow = "1"
+clap = { version = "4", features = ["derive"] }
+crossbeam-channel = "0.5"
+globset = "0.4"
+ignore = "0.4"
+regex = "1"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+thiserror = "2"
+
+[dev-dependencies]
+tempfile = "3"
