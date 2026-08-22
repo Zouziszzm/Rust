@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" class="h-full">
+<head th:replace="~{layout :: head('Expenses')}"></head>
+<body class="h-full">
+<header th:replace="~{layout :: header}"></header>
+<main class="mx-auto max-w-6xl px-4 py-8 sm:px-6">
+    <div th:replace="~{layout :: alerts}"></div>
+
+    <div class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <h1 class="text-2xl font-bold tracking-tight text-slate-900">Expenses</h1>
+        <a th:href="@{/expenses/new}"
+           class="inline-flex items-center justify-center rounded-lg bg-brand-600 px-4 py-2.5 text-sm font-medium text-white shadow-sm hover:bg-brand-700">
+            Add expense
+        </a>
+    </div>
+
+    <div class="mb-6 rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+        <form class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4" method="get" th:action="@{/expenses}" id="filter-form">
+            <div>
+                <label class="mb-1 block text-sm font-medium text-slate-700">Category</label>
+                <div data-custom-select class="relative">
+                    <input type="hidden" name="categoryId" id="filter-categoryId"
+                           th:value="${categoryId != null ? categoryId.toString() : ''}"/>
+                    <button type="button" data-custom-select-trigger aria-expanded="false"
+                            class="flex w-full items-center justify-between rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 shadow-sm transition hover:border-slate-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20">
+                        <span data-custom-select-label data-placeholder="All categories" class="truncate">All categories</span>
+                        <svg class="h-4 w-4 shrink-0 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <ul data-custom-select-menu
+                        class="absolute z-30 mt-1 hidden w-full max-h-60 overflow-auto rounded-lg border border-slate-200 bg-white py-1 shadow-lg ring-1 ring-black/5">
+                        <li data-custom-select-option data-value="" data-label="All categories"
+                            class="cursor-pointer px-3 py-2 text-sm text-slate-500 hover:bg-slate-100">All categories</li>
+                        <li th:each="c : ${categories}"
+                            data-custom-select-option
+                            th:attr="data-value=${c.id()}, data-label=${(c.categoryGroup() != null ? #strings.capitalize(#strings.replace(c.categoryGroup(), '_', ' ')) + ' — ' : '') + c.name()}"
+                            class="cursor-pointer px-3 py-2 text-sm text-slate-700 hover:bg-slate-100"
+                            th:text="${(c.categoryGroup() != null ? c.categoryGroup() + ' — ' : '') + c.name()}">category</li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <label class="mb-1 block text-sm font-medium text-slate-700">Group</label>
+                <input type="text" name="group" th:value="${group}" placeholder="e.g. groceries"
+                       class="block w-full rounded-lg border border-slate-300 px-3 py-2 text-sm shadow-sm focus:border-brand-500 focus:ring-brand-500"/>
+            </div>
+            <div>
+                <label class="mb-1 block text-sm font-medium text-slate-700">Shop</label>
+                <div data-custom-select class="relative">
+                    <input type="hidden" name="shopId" id="filter-shopId"
+                           th:value="${shopId != null ? shopId.toString() : ''}"/>
+                    <button type="button" data-custom-select-trigger aria-expanded="false"
+                            class="flex w-full items-center justify-between rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 shadow-sm transition hover:border-slate-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20">
+                        <span data-custom-select-label data-placeholder="All shops" class="truncate">All shops</span>
+                        <svg class="h-4 w-4 shrink-0 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <ul data-custom-select-menu
+                        class="absolute z-30 mt-1 hidden w-full max-h-60 overflow-auto rounded-lg border border-slate-200 bg-white py-1 shadow-lg ring-1 ring-black/5">
+                        <li data-custom-select-option data-value="" data-label="All shops"
+                            class="cursor-pointer px-3 py-2 text-sm text-slate-500 hover:bg-slate-100">All shops</li>
+                        <li th:each="s : ${shops}"
+                            data-custom-select-option
+                            th:attr="data-value=${s.id()}, data-label=${s.name()}"
+                            class="cursor-pointer px-3 py-2 text-sm text-slate-700 hover:bg-slate-100"
+                            th:text="${s.name()}">shop</li>
+                    </ul>
+                </div>
+            </div>
+            <div>
+                <label class="mb-1 block text-sm font-medium text-slate-700">Payment</label>
+                <input type="text" name="paymentMethod" th:value="${paymentMethod}" placeholder="paypay"
+                       class="block w-full rounded-lg border border-slate-300 px-3 py-2 text-sm shadow-sm focus:border-brand-500 focus:ring-brand-500"/>
+            </div>
+            <div>
+                <label class="mb-1 block text-sm font-medium text-slate-700">From</label>
+                <input type="date" name="from" th:value="${from}"
+                       class="block w-full rounded-lg border border-slate-300 px-3 py-2 text-sm shadow-sm focus:border-brand-500 focus:ring-brand-500"/>
+            </div>
+            <div>
+                <label class="mb-1 block text-sm font-medium text-slate-700">To</label>
+                <input type="date" name="to" th:value="${to}"
+                       class="block w-full rounded-lg border border-slate-300 px-3 py-2 text-sm shadow-sm focus:border-brand-500 focus:ring-brand-500"/>
+            </div>
+            <div class="flex items-end">
+                <button type="submit"
+                        class="rounded-lg bg-slate-800 px-4 py-2.5 text-sm font-medium text-white hover:bg-slate-900">
+                    Apply filters
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <div class="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
+        <table class="min-w-full divide-y divide-slate-200">
+            <thead class="bg-slate-50">
+            <tr>
+                <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">Date</th>
+                <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">Title</th>
+                <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">Category</th>
+                <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">Shop</th>
+                <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">Payment</th>
+                <th class="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide text-slate-500">Amount</th>
+                <th class="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide text-slate-500"></th>
+            </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+            <tr th:each="e : ${expenses}" class="hover:bg-slate-50">
+                <td class="px-4 py-3 text-sm text-slate-600" th:text="${#temporals.format(e.occurredAt(), 'yyyy-MM-dd')}">date</td>
+                <td class="px-4 py-3 text-sm font-medium text-slate-900" th:text="${e.title()}">title</td>
+                <td class="px-4 py-3 text-sm text-slate-600" th:text="${e.categoryName()}">cat</td>
+                <td class="px-4 py-3 text-sm text-slate-600" th:text="${e.shopName() != null ? e.shopName() : '—'}">shop</td>
+                <td class="px-4 py-3 text-sm text-slate-500" th:text="${e.paymentMethod()}">pay</td>
+                <td class="px-4 py-3 text-right text-sm font-semibold tabular-nums text-slate-900"
+                    th:text="${T(com.opexence.util.YenFormatter).format(e.amountTotal())}">¥0</td>
+                <td class="px-4 py-3 text-right text-sm">
+                    <a th:href="@{/expenses/{id}/edit(id=${e.id()})}" class="text-brand-600 hover:underline">Edit</a>
+                    <form th:action="@{/expenses/{id}/delete(id=${e.id()})}" method="post" class="inline ml-2">
+                        <button type="submit" class="text-red-600 hover:underline">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            <tr th:if="${#lists.isEmpty(expenses)}">
+                <td colspan="7" class="px-4 py-8 text-center text-sm text-slate-500">No expenses yet. Add your first one.</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+<footer th:replace="~{layout :: footer}"></footer>
+<th:block th:replace="~{layout :: scripts}"></th:block>
+</body>
+</html>

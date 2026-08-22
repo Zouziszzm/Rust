@@ -1,0 +1,14 @@
+target/
+.idea/
+.vscode/
+*.env
+!*.env.example
+.DS_Store
+node_modules/
+
+# Java
+frontend/build/
+frontend/.gradle/
+
+# Rust
+backend/target/

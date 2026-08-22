@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" class="h-full">
+<head th:fragment="head(title)">
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title th:text="${title} + ' — op-exence'">op-exence</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: { 50: '#f0f4f8', 100: '#d9e2ec', 500: '#1e3a5f', 600: '#1a3354', 700: '#152a47' }
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" th:href="@{/css/app.css}"/>
+</head>
+<body class="h-full bg-slate-50 text-slate-900 antialiased">
+<header th:fragment="header" class="border-b border-slate-200 bg-white shadow-sm">
+    <div class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
+        <a th:href="@{/}" class="text-xl font-bold tracking-tight text-brand-600">op-exence</a>
+        <nav class="flex gap-1 sm:gap-2">
+            <a th:href="@{/}" class="rounded-lg px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100 hover:text-brand-600">Dashboard</a>
+            <a th:href="@{/expenses}" class="rounded-lg px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100 hover:text-brand-600">Expenses</a>
+            <a th:href="@{/categories}" class="rounded-lg px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100 hover:text-brand-600">Categories</a>
+        </nav>
+    </div>
+</header>
+
+<footer th:fragment="footer" class="mt-auto border-t border-slate-200 bg-white py-6">
+    <div class="mx-auto max-w-6xl px-4 text-center text-sm text-slate-500 sm:px-6">
+        Japan living expense tracker — English UI
+    </div>
+</footer>
+
+<div th:fragment="alerts">
+    <div th:if="${successMessage}"
+         class="mb-4 rounded-lg border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-800"
+         th:text="${successMessage}"></div>
+    <div th:if="${errorMessage}"
+         class="mb-4 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-800"
+         th:text="${errorMessage}"></div>
+</div>
+
+<th:block th:fragment="scripts">
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+    <script th:src="@{/js/custom-select.js}"></script>
+</th:block>
+</body>
+</html>

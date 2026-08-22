@@ -1,0 +1,14 @@
+{
+  "name": "op-exence",
+  "private": true,
+  "scripts": {
+    "dev": "bash scripts/dev.sh",
+    "dev:backend": "cd backend && cargo run",
+    "dev:frontend": "bash scripts/run-frontend.sh",
+    "postgres": "bash scripts/start-postgres.sh",
+    "stop": "bash scripts/stop-dev.sh"
+  },
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}

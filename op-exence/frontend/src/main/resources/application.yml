@@ -1,0 +1,11 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: op-exence-frontend
+  thymeleaf:
+    cache: false
+
+api:
+  base-url: ${API_BASE_URL:http://localhost:8080}

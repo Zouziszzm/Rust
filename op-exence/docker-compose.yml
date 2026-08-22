@@ -1,0 +1,45 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: op_exence
+      POSTGRES_PASSWORD: op_exence
+      POSTGRES_DB: op_exence
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U op_exence -d op_exence"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "8080:8080"
+    environment:
+      DATABASE_URL: postgres://op_exence:op_exence@postgres:5432/op_exence
+      HOST: 0.0.0.0
+      PORT: 8080
+      DB_POOL_MAX: 5
+      CORS_ORIGIN: http://localhost:8081
+      RUST_LOG: info,op_exence=debug
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "8081:8081"
+    environment:
+      API_BASE_URL: http://backend:8080
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:

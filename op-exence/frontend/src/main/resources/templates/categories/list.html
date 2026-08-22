@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" class="h-full">
+<head th:replace="~{layout :: head('Categories')}"></head>
+<body class="h-full">
+<header th:replace="~{layout :: header}"></header>
+<main class="mx-auto max-w-6xl px-4 py-8 sm:px-6">
+    <div th:replace="~{layout :: alerts}"></div>
+
+    <div class="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+            <h1 class="text-2xl font-bold tracking-tight text-slate-900">Categories</h1>
+            <p class="mt-1 text-sm text-slate-500">
+                Japan expense groups and custom categories ·
+                <span th:text="${monthLabel}">Month</span>
+            </p>
+        </div>
+        <a th:href="@{/categories/new}"
+           class="inline-flex items-center justify-center rounded-lg bg-brand-600 px-4 py-2.5 text-sm font-medium text-white shadow-sm hover:bg-brand-700">
+            Add custom category
+        </a>
+    </div>
+
+    <div class="mb-8 grid gap-4 sm:grid-cols-2">
+        <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+            <p class="text-xs font-medium uppercase tracking-wide text-slate-500">Total categories</p>
+            <p class="mt-2 text-2xl font-bold tabular-nums text-slate-900" th:text="${totalCategories}">0</p>
+        </div>
+        <div class="rounded-xl border border-slate-200 bg-white p-4 shadow-sm">
+            <p class="text-xs font-medium uppercase tracking-wide text-slate-500">Custom categories</p>
+            <p class="mt-2 text-2xl font-bold tabular-nums text-slate-900" th:text="${customCategories}">0</p>
+        </div>
+    </div>
+
+    <div class="space-y-6">
+        <section th:each="entry : ${groupedCategories}"
+                 class="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
+            <div class="flex items-center justify-between border-b border-slate-100 bg-slate-50 px-4 py-3">
+                <div class="flex items-center gap-3">
+                    <span class="inline-flex items-center rounded-md bg-brand-100 px-2.5 py-1 text-xs font-semibold uppercase tracking-wide text-brand-700"
+                          th:text="${entry.key}">group</span>
+                    <h2 class="text-sm font-semibold text-slate-900"
+                        th:text="${#strings.capitalize(#strings.replace(entry.key, '_', ' '))}">Group</h2>
+                </div>
+                <span class="text-xs text-slate-500"
+                      th:text="${entry.value.size()} + ' categories'">0 categories</span>
+            </div>
+            <table class="min-w-full divide-y divide-slate-100">
+                <thead class="bg-white">
+                <tr>
+                    <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">Name</th>
+                    <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">Slug</th>
+                    <th class="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wide text-slate-500">Type</th>
+                    <th class="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide text-slate-500">This month</th>
+                    <th class="px-4 py-3 text-right text-xs font-semibold uppercase tracking-wide text-slate-500"></th>
+                </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-50">
+                <tr th:each="c : ${entry.value}" class="hover:bg-slate-50">
+                    <td class="px-4 py-3">
+                        <p class="text-sm font-medium text-slate-900" th:text="${c.name()}">name</p>
+                        <p th:if="${c.description() != null && !c.description().isBlank()}"
+                           class="mt-0.5 text-xs text-slate-500" th:text="${c.description()}">desc</p>
+                    </td>
+                    <td class="px-4 py-3 text-sm font-mono text-slate-500" th:text="${c.slug()}">slug</td>
+                    <td class="px-4 py-3">
+                        <span th:if="${c.isSystem()}"
+                              class="inline-flex rounded-full bg-slate-100 px-2 py-0.5 text-xs font-medium text-slate-600">System</span>
+                        <span th:unless="${c.isSystem()}"
+                              class="inline-flex rounded-full bg-emerald-50 px-2 py-0.5 text-xs font-medium text-emerald-700">Custom</span>
+                    </td>
+                    <td class="px-4 py-3 text-right text-sm font-semibold tabular-nums text-slate-900"
+                        th:text="${T(com.opexence.util.YenFormatter).format(categoryTotalsMap.getOrDefault(c.id(), 0L))}">¥0</td>
+                    <td class="px-4 py-3 text-right text-sm">
+                        <th:block th:if="${!c.isSystem()}">
+                            <a th:href="@{/categories/{id}/edit(id=${c.id()})}"
+                               class="font-medium text-brand-600 hover:underline">Edit</a>
+                            <form th:action="@{/categories/{id}/delete(id=${c.id()})}" method="post" class="inline ml-3">
+                                <button type="submit" class="font-medium text-red-600 hover:underline">Delete</button>
+                            </form>
+                        </th:block>
+                        <span th:if="${c.isSystem()}" class="text-slate-400">—</span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+</main>
+<footer th:replace="~{layout :: footer}"></footer>
+</body>
+</html>
