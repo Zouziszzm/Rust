@@ -15,3 +15,7 @@ Expense tracker with a Rust API, Java/Spring frontend, and Postgres. Supports ca
 ### [m-search](./m-search/)
 
 Multi-threaded file search tool and library. Searches file names (glob) and file contents (regex) in parallel, with a CLI and reusable Rust API.
+
+### [s-c-s](./s-c-s/)
+
+Channel-based TCP chat CLI. Create or join channels with a code, broadcast messages, and DM members. Works on LAN or over Tailscale.

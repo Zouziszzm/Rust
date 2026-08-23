@@ -1,0 +1,32 @@
+[package]
+name = "s-c-s"
+version = "0.1.0"
+edition = "2021"
+description = "Simple channel-based TCP chat (CLI)"
+default-run = "s-c-s"
+
+[lib]
+name = "scs"
+path = "src/lib.rs"
+
+[[bin]]
+name = "s-c-s"
+path = "src/main.rs"
+
+[[bin]]
+name = "chat-server"
+path = "src/bin/server.rs"
+
+[dependencies]
+anyhow = "1"
+clap = { version = "4", features = ["derive"] }
+crossbeam-channel = "0.5"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+owo-colors = "4"
+inquire = "0.7"
+ratatui = "0.29"
+crossterm = "0.28"
+
+[dev-dependencies]
+tempfile = "3"
