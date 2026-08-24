@@ -19,3 +19,7 @@ Multi-threaded file search tool and library. Searches file names (glob) and file
 ### [s-c-s](./s-c-s/)
 
 Channel-based TCP chat CLI. Create or join channels with a code, broadcast messages, and DM members. Works on LAN or over Tailscale.
+
+### [rate-limiter](./rate-limiter/)
+
+Std-only token-bucket rate limiter library with sync and thread-safe APIs.

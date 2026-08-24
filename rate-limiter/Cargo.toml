@@ -1,0 +1,14 @@
+[package]
+name = "rate-limiter"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+description = "A small, std-only token-bucket rate limiter"
+readme = "README.md"
+repository = "https://github.com/Zouziszzm/Rust"
+keywords = ["rate-limit", "token-bucket", "throttle"]
+categories = ["algorithms", "concurrency"]
+
+[lib]
+name = "rate_limiter"
+path = "src/lib.rs"
