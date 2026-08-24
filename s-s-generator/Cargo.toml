@@ -1,0 +1,25 @@
+[package]
+name = "s-s-generator"
+version = "0.1.0"
+edition = "2021"
+description = "A small static site generator: markdown, front-matter, templates"
+default-run = "ssg"
+
+[lib]
+name = "ssg"
+path = "src/lib.rs"
+
+[[bin]]
+name = "ssg"
+path = "src/main.rs"
+
+[dependencies]
+anyhow = "1"
+clap = { version = "4", features = ["derive"] }
+pulldown-cmark = "0.13"
+serde = { version = "1", features = ["derive"] }
+serde_yaml = "0.9"
+walkdir = "2"
+
+[dev-dependencies]
+tempfile = "3"
