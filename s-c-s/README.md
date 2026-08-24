@@ -28,8 +28,8 @@ I wanted something lightweight for quick coordination between machines I already
 - **Colors** via `owo-colors` + ratatui styles — each member has a stable color
 
 ```
-┌─ s-c-s ────────────────────────────────────────────────────────┐
-│ Channel ABC123  |  2 member(s)  |  you: alice                 │
+┌─ s-c-s ──────────────────────────────────────────────────────┐
+│ Channel ABC123  |  2 member(s)  |  you: alice                │
 ├──────────────────────────────┬───────────────────────────────┤
 │ Messages                     │ Members (2)                   │
 │ [alice] hello                │ alice (you)                   │
