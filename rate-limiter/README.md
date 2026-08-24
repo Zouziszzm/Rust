@@ -1,3 +1,12 @@
+---
+title: rate-limiter
+subtext: A small, std-only token-bucket rate limiter for Rust — no async runtime, no external dependencies.
+stack: [Rust]
+extent: [Develop]
+contribution: Solo Developer
+category: Personal
+---
+
 # std-only-rate-limiter
 
 A small, **std-only** token-bucket rate limiter for Rust. Tokens refill continuously at a configured rate, burst up to a capacity, and callers either acquire tokens or get rejected — no async runtime, no external dependencies.

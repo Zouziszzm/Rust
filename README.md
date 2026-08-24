@@ -18,7 +18,7 @@ Multi-threaded file search tool and library. Searches file names (glob) and file
 
 ### [s-c-s](./s-c-s/)
 
-Channel-based TCP chat CLI. Create or join channels with a code, broadcast messages, and DM members. Works on LAN or over Tailscale.
+Simple Channel Chat — channel-based TCP chat CLI. Create or join channels with a code, broadcast messages, and DM members. Works on LAN or over Tailscale.
 
 ### [rate-limiter](./rate-limiter/) (`std-only-rate-limiter` on crates.io)
 
@@ -26,4 +26,4 @@ Std-only token-bucket rate limiter library with sync and thread-safe APIs.
 
 ### [s-s-generator](./s-s-generator/)
 
-Static site generator: markdown input, YAML front-matter, HTML templates, and recursive content directory builds.
+Static Site Generator — markdown input, YAML front-matter, HTML templates, and recursive content directory builds.

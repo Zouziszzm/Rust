@@ -1,3 +1,12 @@
+---
+title: odot
+subtext: Todo app. Rust API + Next.js UI + Postgres.
+stack: [Rust, Next.js, PostgreSQL]
+extent: [Develop]
+contribution: Solo Developer
+category: Personal
+---
+
 # odot
 
 Todo app. Rust API + Next.js UI + Postgres.

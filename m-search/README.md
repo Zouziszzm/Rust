@@ -1,3 +1,12 @@
+---
+title: m-search
+subtext: Multi-threaded file name and content search for Rust.
+stack: [Rust]
+extent: [Develop]
+contribution: Solo Developer
+category: Personal
+---
+
 # m-search
 
 Multi-threaded file name and content search for Rust.

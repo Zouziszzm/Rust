@@ -1,3 +1,12 @@
+---
+title: Simple Channel Chat
+subtext: Text-only CLI chat with channels. Create a channel, share a code, and let others join.
+stack: [Rust, ratatui, TCP]
+extent: [Develop]
+contribution: Solo Developer
+category: Personal
+---
+
 # s-c-s — Simple Channel Chat
 
 Text-only CLI chat with channels. Create a channel, share a code, and let others join. Works on the same machine, LAN, or over [Tailscale](https://tailscale.com/).
