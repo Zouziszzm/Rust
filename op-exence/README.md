@@ -1,6 +1,8 @@
 ---
 title: op-exence
 subtext: Expense tracker with a Rust API, Java/Spring frontend, and Postgres. Supports categories, shops, and monthly summaries.
+order: 2
+portfolioMode: summary
 stack: [Rust, Java, Spring, PostgreSQL]
 extent: [Develop]
 contribution: Solo Developer
@@ -9,9 +11,11 @@ category: Personal
 
 # op-exence
 
+## Portfolio
+
 Expense tracker with a Rust API, Java/Spring frontend, and Postgres. Supports categories, shops, and monthly summaries.
 
-## Dev
+## Development
 
 ```bash
 npm run dev
@@ -19,10 +23,6 @@ npm run dev
 
 - UI: http://localhost:8081
 - API: http://localhost:8080
-
-Press **Ctrl+C** in the dev terminal to stop the apps and Postgres.
-
-## Other
 
 ```bash
 docker compose up --build

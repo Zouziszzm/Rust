@@ -1,6 +1,9 @@
 ---
 title: m-search
 subtext: Multi-threaded file name and content search for Rust.
+order: 5
+portfolioMode: summary-collapsible
+detailsCollapsed: true
 stack: [Rust]
 extent: [Develop]
 contribution: Solo Developer
@@ -9,19 +12,15 @@ category: Personal
 
 # m-search
 
-Multi-threaded file name and content search for Rust.
+## Portfolio
 
-## Features
+Multi-threaded file name and content search for Rust. Searches file names (glob) and file contents (regex) in parallel, with a CLI and reusable library API.
 
-- Search file names/paths with glob patterns
-- Search file contents with regex
-- Parallel directory traversal via the `ignore` crate (respects `.gitignore`)
-- Library API and CLI
-
-## Build
+## Development
 
 ```bash
 cargo build --release
+cargo test
 ```
 
 ## Usage
@@ -53,10 +52,4 @@ let config = SearchConfig::from_pattern(
 )?;
 
 let results = search(&config)?;
-```
-
-## Test
-
-```bash
-cargo test
 ```
