@@ -20,6 +20,6 @@ Multi-threaded file search tool and library. Searches file names (glob) and file
 
 Channel-based TCP chat CLI. Create or join channels with a code, broadcast messages, and DM members. Works on LAN or over Tailscale.
 
-### [rate-limiter](./rate-limiter/)
+### [rate-limiter](./rate-limiter/) (`std-only-rate-limiter` on crates.io)
 
 Std-only token-bucket rate limiter library with sync and thread-safe APIs.

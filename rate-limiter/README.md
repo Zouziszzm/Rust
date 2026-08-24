@@ -1,4 +1,4 @@
-# rate-limiter
+# std-only-rate-limiter
 
 A small, **std-only** token-bucket rate limiter for Rust. Tokens refill continuously at a configured rate, burst up to a capacity, and callers either acquire tokens or get rejected — no async runtime, no external dependencies.
 
@@ -8,7 +8,7 @@ Add to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-rate-limiter = "0.1"
+std-only-rate-limiter = "0.1"
 ```
 
 ```rust
@@ -25,7 +25,7 @@ for _ in 0..15 {
 }
 ```
 
-For multi-threaded use, wrap with [`RateLimiter`](https://docs.rs/rate-limiter/latest/rate_limiter/struct.RateLimiter.html):
+For multi-threaded use, wrap with [`RateLimiter`](https://docs.rs/std-only-rate-limiter/latest/rate_limiter/struct.RateLimiter.html):
 
 ```rust
 use rate_limiter::RateLimiter;
@@ -48,8 +48,8 @@ for _ in 0..4 {
 
 | Type | Use when |
 |------|----------|
-| [`TokenBucket`](https://docs.rs/rate-limiter/latest/rate_limiter/struct.TokenBucket.html) | Single-threaded code |
-| [`RateLimiter`](https://docs.rs/rate-limiter/latest/rate_limiter/struct.RateLimiter.html) | Shared across threads (`Send + Sync`) |
+| [`TokenBucket`](https://docs.rs/std-only-rate-limiter/latest/rate_limiter/struct.TokenBucket.html) | Single-threaded code |
+| [`RateLimiter`](https://docs.rs/std-only-rate-limiter/latest/rate_limiter/struct.RateLimiter.html) | Shared across threads (`Send + Sync`) |
 
 Both support:
 
@@ -69,7 +69,7 @@ cargo doc --open --no-deps
 
 ## Publishing
 
-This crate is ready to publish on [crates.io](https://crates.io). See the repository for publishing steps.
+This crate is ready to publish on [crates.io](https://crates.io/crates/std-only-rate-limiter).
 
 ## Non-goals (v0.1)
 
