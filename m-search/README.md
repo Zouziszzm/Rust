@@ -4,6 +4,7 @@ subtext: Multi-threaded file name and content search for Rust.
 order: 5
 portfolioMode: summary-collapsible
 detailsCollapsed: true
+date: Aug 2026
 stack: [Rust]
 extent: [Develop]
 contribution: Solo Developer

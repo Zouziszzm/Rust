@@ -3,6 +3,7 @@ title: odot
 subtext: Todo app. Rust API + Next.js UI + Postgres.
 order: 1
 portfolioMode: summary
+date: Dec 2025
 stack: [Rust, Next.js, PostgreSQL]
 extent: [Develop]
 contribution: Solo Developer

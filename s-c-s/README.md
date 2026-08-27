@@ -3,6 +3,7 @@ title: Simple Channel Chat
 subtext: Text-only CLI chat with channels. Create a channel, share a code, and let others join.
 order: 3
 portfolioMode: summary
+date: Apr 2026
 stack: [Rust, ratatui, TCP]
 extent: [Develop]
 contribution: Solo Developer

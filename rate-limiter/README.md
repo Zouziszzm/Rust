@@ -4,6 +4,7 @@ subtext: A small, std-only token-bucket rate limiter for Rust — no async runti
 order: 6
 portfolioMode: summary-collapsible
 detailsCollapsed: true
+date: Jan 2026
 stack: [Rust]
 extent: [Develop]
 contribution: Solo Developer

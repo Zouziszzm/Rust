@@ -3,6 +3,7 @@ title: Static Site Generator
 subtext: A small static site generator written in Rust with markdown, YAML front-matter, and HTML templates.
 order: 4
 portfolioMode: summary
+date: Jun 2026
 stack: [Rust, pulldown-cmark, serde, clap]
 extent: [Develop]
 contribution: Solo Developer

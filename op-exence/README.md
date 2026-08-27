@@ -3,6 +3,7 @@ title: op-exence
 subtext: Expense tracker with a Rust API, Java/Spring frontend, and Postgres. Supports categories, shops, and monthly summaries.
 order: 2
 portfolioMode: summary
+date: Feb 2026
 stack: [Rust, Java, Spring, PostgreSQL]
 extent: [Develop]
 contribution: Solo Developer
