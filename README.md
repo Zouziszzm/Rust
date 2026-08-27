@@ -27,3 +27,7 @@ Std-only token-bucket rate limiter library with sync and thread-safe APIs.
 ### [s-s-generator](./s-s-generator/)
 
 Static Site Generator — markdown input, YAML front-matter, HTML templates, and recursive content directory builds.
+
+### [lumen](./lumen/)
+
+Rust engine for Lumen — Anki import, SQLite persistence, FSRS scheduling, and card templates. Powers the Tauri and Flutter frontends.
